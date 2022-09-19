@@ -6,6 +6,12 @@
 % I only need the arrows for this one.
 \usepackage{tikz}
 \usetikzlibrary{arrows}
+\usepackage{microtype}
+%\usepackage{charter}
+%\usepackage{palatino}
+%\usepackage{newcent}
+% \usepackage{bookman}
+\usepackage{mathpazo}
 
 % Nice captions.
 \usepackage[hang,small,bf]{caption}
@@ -45,46 +51,45 @@ The workflow calls for two main git actions:
     \item merging the feature branch into the source tree when the work is completed.
 \end{itemize}
 
-The first item, rebasing the source into the feature addresses potential conflicts created by the diverging timelines.
+The first item, re-basing the source into the feature addresses potential conflicts created by the diverging timelines.
 
 
 
 
-A feature branch \textit{feature} created from a \textit{dev} branch has to be rebased periodically with the purpose of minimizing and simplifying the conflicts later on if they occur while merging it into \textit{dev}.
+A feature branch \textit{feature} created from a \textit{dev} branch has to be re-based periodically with the purpose of minimizing and simplifying the conflicts later on if they occur while merging it into \textit{dev}.
 The result will be a linear tree that is simple to read.
 
-While working on the 
 
 % Place the TikZ picture in a figure environment.
-\begin{figure}
-\centerline{
-  % Resize it to 5cm wide.
-  \resizebox{10cm}{!}{
-    \begin{tikzpicture}[
-      scale=0.5,
-      level/.style={thick},
-      virtual/.style={thick,densely dashed},
-      trans/.style={thick,<->,shorten >=2pt,shorten <=2pt,>=stealth},
-      classical/.style={thin,double,<->,shorten >=4pt,shorten <=4pt,>=stealth}
-    ]
-    % Draw the energy levels.
-    \draw[level] (0cm,11em) -- (7cm,11em) node[right] {Main};
-    \draw[level] (0cm,0em) -- (3cm,0em) node[right] {Dev};
-    % \draw[level] (2cm,11em) -- (4cm,11em) node[midway,above] {\ket{b}};
-    \draw[level] (0cm,-11em) -- (4cm,-11em) node[right] {Acc};
-    % Draw the virtual levels.
-    % \d1raw[virtual] (2cm,8em) -- (4cm,8em) node[midway,above] {\De{1}};
-    % \draw[virtual] (4cm,-8em) -- (6cm,-8em) node[midway,below] {\De{2}};
-    % \draw[virtual] (2cm,-5em) -- (0cm,-5em) node[midway,above] {\De{3}};
-    % % Draw the transitions.
-    % \draw[trans] (1cm,-2em) -- (2.5cm,8em) node[midway,left] {\Om{1}};
-    % \draw[trans] (3.5cm,8em) -- (5cm,-8em) node[midway,right] {\Om{2}};
-    % \draw[classical] (4.5cm,-8em) -- (1.5cm,-5em) node[midway,below] {\Ga{}};
-    \end{tikzpicture}
-  }
-}
-\caption{A level diagram with some transitions drawn in TikZ, resized,
-                and placed in a figure environment.}
-\end{figure}
+% \begin{figure}
+% \centerline{
+%   % Resize it to 5cm wide.
+%   \resizebox{10cm}{!}{
+%     \begin{tikzpicture}[
+%       scale=0.5,
+%       level/.style={thick},
+%       virtual/.style={thick,densely dashed},
+%       trans/.style={thick,<->,shorten >=2pt,shorten <=2pt,>=stealth},
+%       classical/.style={thin,double,<->,shorten >=4pt,shorten <=4pt,>=stealth}
+%     ]
+%     % Draw the energy levels.
+%     \draw[level] (0cm,11em) -- (7cm,11em) node[right] {Main};
+%     \draw[level] (0cm,0em) -- (3cm,0em) node[right] {Dev};
+%     % \draw[level] (2cm,11em) -- (4cm,11em) node[midway,above] {\ket{b}};
+%     \draw[level] (0cm,-11em) -- (4cm,-11em) node[right] {Acc};
+%     % Draw the virtual levels.
+%     % \d1raw[virtual] (2cm,8em) -- (4cm,8em) node[midway,above] {\De{1}};
+%     % \draw[virtual] (4cm,-8em) -- (6cm,-8em) node[midway,below] {\De{2}};
+%     % \draw[virtual] (2cm,-5em) -- (0cm,-5em) node[midway,above] {\De{3}};
+%     % % Draw the transitions.
+%     % \draw[trans] (1cm,-2em) -- (2.5cm,8em) node[midway,left] {\Om{1}};
+%     % \draw[trans] (3.5cm,8em) -- (5cm,-8em) node[midway,right] {\Om{2}};
+%     % \draw[classical] (4.5cm,-8em) -- (1.5cm,-5em) node[midway,below] {\Ga{}};
+%     \end{tikzpicture}
+%   }
+% }
+% \caption{A level diagram with some transitions drawn in TikZ, resized,
+%                 and placed in a figure environment.}
+% \end{figure}
 
 \end{document} 
