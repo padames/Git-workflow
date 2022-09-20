@@ -27,6 +27,22 @@
 
 \begin{document}
 
+\section{Glossary}
+
+For the purpose of this tutorial the following definitions will apply.
+
+\begin{itemize}
+    \item branch: a linked list of git commits where each commit is a node and has a parent and a child nodes.
+    \item source: when applied to a branch refers to the name of another branch where the current one was grown from.
+    \item remote: a repository where the local pull and push commands have effect on
+    \item commit: a version of a file that can be computed as a delta or binary difference against a previous existing one.
+    \item rebase: a git action and a concept whereby a series of commits from one branch are inserted into the same or another branch
+    \item fast-forward: when a series of commits from a branch can be inserted, without any changes, at the tip of another branch because there are no conflicting commits.
+    \item conflicting commit: when two or more commits affect the same parts of a file in ways that overlap each other.  
+    \item merge: copying commits from one branch onto another starting at a specific commit
+    \item local tree: the repository residing on the file system of the machine you are working in, as opposed to those that reside on a different machine or URL.
+\end{itemize}
+
 \section{Feature branch workflow}
 
 The life cycle of a feature branch is to be created from its tree, receive new commits, be merged back into its tree and finally be deleted.
@@ -53,7 +69,7 @@ The workflow calls for two main git actions:
 
 The first item, re-basing the source into the feature addresses potential conflicts created by the diverging timelines.
 
-\section{Keeping the branch up to date}
+\section{Keeping the source branch up to date}
 
 The ultimate goal of working with branches is to isolate change while work continues on the feature branch and on the origin branch.
 When the origin branch in the local repository tracks a branch in an upstream remote, changes in the remote branch have to be pulled and re-based over the local branch.
