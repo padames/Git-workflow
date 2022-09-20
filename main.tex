@@ -53,11 +53,27 @@ The workflow calls for two main git actions:
 
 The first item, re-basing the source into the feature addresses potential conflicts created by the diverging timelines.
 
+\section{Keeping the branch up to date}
+
+The ultimate goal of working with branches is to isolate change while work continues on the feature branch and on the origin branch.
+When the origin branch in the local repository tracks a branch in an upstream remote, changes in the remote branch have to be pulled and re-based over the local branch.
+By doing this, the final merge into the remote will look linear because the local changes will be brought a a simple  fast  forward merge without conflicts.
+
+In this scenario the local repository has a branch called \textit{dev} that tracks a branch called the same name in the remote repository in a branch called \textit{origin}/\textit{dev}.
+There is also a feature branch called \textit{feature} tracking \textit{origin}/\textit{feature}.
+
+When there are new commits in \textit{origin}/\textit{dev} they should be brought into the local \textit{dev} branch via the following operation at the command line:
+
+\begin{verbatim}
+    (dev)$ git pull --rebase origin dev 
+\end{verbatim}
 
 
+Int he above snippet the \verb|(dev) $| piece indicates the current local branch name in parenthesis and the dollar symbol ios the command line prompt.
 
-A feature branch \textit{feature} created from a \textit{dev} branch has to be re-based periodically with the purpose of minimizing and simplifying the conflicts later on if they occur while merging it into \textit{dev}.
-The result will be a linear tree that is simple to read.
+
+% A feature branch \textit{feature} created from a \textit{dev} branch has to be re-based periodically with the purpose of minimizing and simplifying the conflicts later on if they occur while merging it into \textit{dev}.
+% The result will be a linear tree that is simple to read.
 
 
 % Place the TikZ picture in a figure environment.
