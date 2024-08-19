@@ -3,6 +3,8 @@
 
 \documentclass[10pt]{article}
 
+\usepackage[margin=1.5cm]{geometry}
+
 % I only need the arrows for this one.
 \usepackage{tikz}
 \usetikzlibrary{arrows}
@@ -29,14 +31,14 @@
 
 \section{Glossary}
 
-For the purpose of this tutorial the following definitions will apply.
+For this tutorial, the following definitions will apply.
 
 \begin{itemize}
-    \item branch: a linked list of git commits where each commit is a node and has a parent and a child nodes.
+    \item branch: a linked list of git commits where each commit is a node and has parent(s) and child(ren) nodes.
     \item source: when applied to a branch refers to the name of another branch where the current one was grown from.
-    \item remote: a repository where the local pull and push commands have effect on
+    \item remote: a repository affected by the pull and push commands 
     \item commit: a version of a file that can be computed as a delta or binary difference against a previous existing one.
-    \item rebase: a git action and a concept whereby a series of commits from one branch are inserted into the same or another branch
+    \item rebase: a git action and a concept whereby a series of commits from one branch is inserted into the same or another branch
     \item fast-forward: when a series of commits from a branch can be inserted, without any changes, at the tip of another branch because there are no conflicting commits.
     \item conflicting commit: when two or more commits affect the same parts of a file in ways that overlap each other.  
     \item merge: copying commits from one branch onto another starting at a specific commit
@@ -50,7 +52,7 @@ The quality of the history reflected by the tree will depend on how easy it is t
 In general the more linear the easier to understand as a timeline where file changes have happened at distinct points in time by specific contributors.
 
 The workflow can be visualized through Figure~\ref{fig:feature-happy-path}. 
-During the simultaneous growth of the branch and the main tree there is potential for conflicts if the contributions made at the same location in the same file are different, technically the branch and the main tree have diverged.
+During the simultaneous growth of the branch and the main tree, there is potential for conflicts if the contributions made at the same location in the same file are different, technically the branch and the main tree have diverged.
 
 \begin{figure}
     \centering
@@ -59,7 +61,7 @@ During the simultaneous growth of the branch and the main tree there is potentia
     \label{fig:feature-happy-path}
 \end{figure}
 
-In order to achieve this goal let's have a look at the best practice while using feature branches.
+To achieve this goal let's have a look at the best practice while using feature branches.
 The workflow calls for two main git actions:
 
 \begin{itemize}
@@ -73,9 +75,9 @@ The first item, re-basing the source into the feature addresses potential confli
 
 The ultimate goal of working with branches is to isolate change while work continues on the feature branch and on the origin branch.
 When the origin branch in the local repository tracks a branch in an upstream remote, changes in the remote branch have to be pulled and re-based over the local branch.
-By doing this, the final merge into the remote will look linear because the local changes will be brought a a simple  fast  forward merge without conflicts.
+By doing this, the final merge into the remote will look linear because the local changes will be brought a simple fast-forward merge without conflicts.
 
-In this scenario the local repository has a branch called \textit{dev} that tracks a branch called the same name in the remote repository in a branch called \textit{origin}/\textit{dev}.
+In this scenario, the local repository has a branch called \textit{dev} that tracks a branch called the same name in the remote repository in a branch called \textit{origin}/\textit{dev}.
 There is also a feature branch called \textit{feature} tracking \textit{origin}/\textit{feature}.
 
 When there are new commits in \textit{origin}/\textit{dev} they should be brought into the local \textit{dev} branch via the following operation at the command line:
@@ -85,7 +87,47 @@ When there are new commits in \textit{origin}/\textit{dev} they should be brough
 \end{verbatim}
 
 
-Int he above snippet the \verb|(dev) $| piece indicates the current local branch name in parenthesis and the dollar symbol ios the command line prompt.
+In the above snippet, the \verb|(dev) $| piece indicates the current local branch name in parenthesis and the dollar symbol ios the command line prompt.
+
+
+\section{Comparing rebase and merge}
+\label{sec:rebaseVsmeerge}
+
+Figure~\ref{fig:initial-tree} shows the state of the tree in the remote before any operation on the branch \texttt{hello}.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{images/Tree_before_any_op.png}
+    \caption{The shape of the tree in the remote and local before any operation on the branch home.}
+    \label{fig:initial-tree}
+\end{figure}
+
+Two different strategies will be applied to this same initial tree with the purpose of comparison.
+Both operations start while the branch \texttt{hello} is checked out. 
+After a \texttt{git rebase main} the local tree appears as in Figure~\ref{fig:tree-after-merge}. 
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{images/Tree_after_rebase_main_on_hello.png}
+    \caption{The shape of the tree in the local repo after doing a rebase of \texttt{hello} with \texttt{main}.}
+    \label{fig:tree-after-rebase}
+\end{figure}
+
+By contrast, Figure~\ref{fig:tree-after-merge} shows the same repo but after doing a merge of \texttt{main} on \texttt{hello}.
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=\textwidth]{images/Tree_after_merge_main_on_hello.png}
+    \caption{The shape of the tree in the local repo after doing a merge of \texttt{hello} with \texttt{main}.}
+    \label{fig:tree-after-merge}
+\end{figure}
+
+
+
+
+
 
 
 % A feature branch \textit{feature} created from a \textit{dev} branch has to be re-based periodically with the purpose of minimizing and simplifying the conflicts later on if they occur while merging it into \textit{dev}.
