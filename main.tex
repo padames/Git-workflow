@@ -15,6 +15,9 @@
 % \usepackage{bookman}
 \usepackage{mathpazo}
 
+% To set paragraph indentation and vertical space between them
+\usepackage[skip=10pt plus1pt, indent=10pt]{parskip}
+
 % Nice captions.
 \usepackage[hang,small,bf]{caption}
 \setlength{\captionmargin}{25pt}
@@ -119,15 +122,22 @@ After a \texttt{git rebase main} the local tree appears as in Figure~\ref{fig:tr
 By contrast, Figure~\ref{fig:tree-after-merge} shows the same repo but after doing a merge of \texttt{main} on \texttt{hello}.
 
 
-\begin{figure}[ht!]
+\begin{figure}[hb!]
     \centering
     \includegraphics[width=\textwidth]{images/Tree_after_merge_main_on_hello.png}
     \caption{The shape of the tree in the local repo after doing a merge of \texttt{hello} with \texttt{main}.}
     \label{fig:tree-after-merge}
 \end{figure}
 
+One of the most salient features is that rebase writes new commits when it enters a copy of the branch \texttt{hello} onto the branch \texttt{main} while it leaves the original commits untouched.
 
+Confirm that the branch \texttt{hello} still shows the commits \textcolor{brown}{20ade47}, \textcolor{brown}{8807795}, and \textcolor{brown}{faa16f7} in both the rebase in Figure~\ref{fig:tree-after-rebase} and the merge trees \ref{fig:tree-after-merge}.
+Both are highlighted with a yellow box of solid lines while the commits are marked by a red box along their final position, in the case of the rebase strategy they are still on the feature branch, while after the merge, they are part of the history of the \texttt{main} branch.
 
+In the case of the rebase strategy, there are three new commits \textcolor{brown}{a3bb900}, \textcolor{brown}{db29e51}, \textcolor{brown}{b3ba61e} on \texttt{main} highlighted in red dash lines along the tree and in the new commit hashes are surrounded by a dash yellow box in  Figure~\ref{fig:tree-after-rebase}. Those commits are not present in the tree after the merge. 
+
+If work in the branch \texttt{hello} ended at this point, deleting the branch pointers would make the commits disappear from the repo in the case of the rebase strategy. 
+However, in the merge scenario, the branch pointer would be eliminated but the commits would stay in the tree.
 
 
 
