@@ -88,27 +88,28 @@ When there are new commits in \textit{origin}/\textit{dev} they should be brough
 \end{verbatim}
 
 
-In the above snippet, the \verb|(dev) $| piece indicates the current local branch name in parenthesis and the dollar symbol is the command line prompt.
+In the above snippet, the \verb|(dev)$| indicates the current local branch name, in parenthesis, and the dollar symbol is the command line prompt.
 
-\clearpage
+
 \section{Comparing rebase and merge}
 \label{sec:rebaseVsmeerge}
 
+
 Figure~\ref{fig:initial-tree} shows the state of the tree in the remote before any operation on the branch \texttt{hello}.
 
-\begin{figure}
+\begin{figure}[hb!]
     \centering
     \includegraphics[width=\textwidth]{images/Tree_before_any_op.png}
     \caption{The tree shape in the remote and local before any operation on the branch home.}
     \label{fig:initial-tree}
 \end{figure}
 
-Two different strategies will be applied to this same initial tree with the purpose of comparison.
+Two different strategies will be compared by applying them to this same initial tree.
 Both operations start while the branch \texttt{hello} is checked out. 
-After a \texttt{git rebase main} the local tree appears as in Figure~\ref{fig:tree-after-merge}. 
+After a \texttt{git rebase main} the local tree appears as in Figure~\ref{fig:tree-after-rebase}. 
 
 
-\begin{figure}
+\begin{figure}[hb!]
     \centering
     \includegraphics[width=\textwidth]{images/Tree_after_rebase_main_on_hello.png}
     \caption{The shape of the tree in the local repo after doing a rebase of \texttt{hello} with \texttt{main}.}
@@ -118,7 +119,7 @@ After a \texttt{git rebase main} the local tree appears as in Figure~\ref{fig:tr
 By contrast, Figure~\ref{fig:tree-after-merge} shows the same repo but after doing a merge of \texttt{main} on \texttt{hello}.
 
 
-\begin{figure}
+\begin{figure}[ht!]
     \centering
     \includegraphics[width=\textwidth]{images/Tree_after_merge_main_on_hello.png}
     \caption{The shape of the tree in the local repo after doing a merge of \texttt{hello} with \texttt{main}.}
