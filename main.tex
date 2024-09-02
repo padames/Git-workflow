@@ -3,7 +3,7 @@
 
 \documentclass[10pt]{article}
 
-\usepackage[margin=1.5cm]{geometry}
+\usepackage[margin=2cm]{geometry}
 
 % I only need the arrows for this one.
 \usepackage{tikz}
@@ -34,7 +34,7 @@
 For this tutorial, the following definitions will apply.
 
 \begin{itemize}
-    \item branch: a linked list of git commits where each commit is a node and has parent(s) and child(ren) nodes.
+    \item branch: a linked list of git commits where each commit is a node with parent(s) and children nodes.
     \item source: when applied to a branch refers to the name of another branch where the current one was grown from.
     \item remote: a repository affected by the pull and push commands 
     \item commit: a version of a file that can be computed as a delta or binary difference against a previous existing one.
@@ -54,15 +54,16 @@ In general the more linear the easier to understand as a timeline where file cha
 The workflow can be visualized through Figure~\ref{fig:feature-happy-path}. 
 During the simultaneous growth of the branch and the main tree, there is potential for conflicts if the contributions made at the same location in the same file are different, technically the branch and the main tree have diverged.
 
-\begin{figure}
+
+\begin{figure}[hb!]
     \centering
-    \includegraphics[width=\textwidth]{images/featurebranch_happy_path.png}
-    \caption{Graphical representation of the history of a working tree when a feature branch is created. (a) The tree grows linearly, (b) the branch starts to grow, (c) both the branch and the main stem of the tree grow, (d) a copy of the branch is merged into the main stem, (e) the branch is removed.}
+    \includegraphics[width=\textwidth,trim={0cm 15cm 0 8cm},clip]{images/featurebranch_happy_path.png}
+    \caption{Graphical representation of the history of a working tree when a feature branch is created. (a) The tree grows linearly, (b) the branch starts to grow, (c) both the branch and the main stem of the tree grow, (d) a copy of the branch is merged into the main stem, and (e) the branch is removed.}
     \label{fig:feature-happy-path}
 \end{figure}
 
-To achieve this goal let's have a look at the best practice while using feature branches.
-The workflow calls for two main git actions:
+Let's look at the best practices while using feature branches.
+The workflow calls for two main git strategies:
 
 \begin{itemize}
     \item rebasing the source tree onto the feature branch as often as new commits appear on the source tree to address diverging histories.
@@ -73,9 +74,9 @@ The first item, re-basing the source into the feature addresses potential confli
 
 \section{Keeping the source branch up to date}
 
-The ultimate goal of working with branches is to isolate change while work continues on the feature branch and on the origin branch.
-When the origin branch in the local repository tracks a branch in an upstream remote, changes in the remote branch have to be pulled and re-based over the local branch.
-By doing this, the final merge into the remote will look linear because the local changes will be brought a simple fast-forward merge without conflicts.
+The ultimate goal of working with branches is to isolate change while work continues on the feature and origin branches.
+When the origin branch in the local repository tracks a branch in an upstream remote, changes in the remote branch must be pulled and re-based over the local branch.
+When this process is followed, all conflicts are solved as they appear, and the final merge into the remote will look linear and will be a simple fast-forward merge without conflicts.
 
 In this scenario, the local repository has a branch called \textit{dev} that tracks a branch called the same name in the remote repository in a branch called \textit{origin}/\textit{dev}.
 There is also a feature branch called \textit{feature} tracking \textit{origin}/\textit{feature}.
@@ -87,9 +88,9 @@ When there are new commits in \textit{origin}/\textit{dev} they should be brough
 \end{verbatim}
 
 
-In the above snippet, the \verb|(dev) $| piece indicates the current local branch name in parenthesis and the dollar symbol ios the command line prompt.
+In the above snippet, the \verb|(dev) $| piece indicates the current local branch name in parenthesis and the dollar symbol is the command line prompt.
 
-
+\clearpage
 \section{Comparing rebase and merge}
 \label{sec:rebaseVsmeerge}
 
@@ -98,7 +99,7 @@ Figure~\ref{fig:initial-tree} shows the state of the tree in the remote before a
 \begin{figure}
     \centering
     \includegraphics[width=\textwidth]{images/Tree_before_any_op.png}
-    \caption{The shape of the tree in the remote and local before any operation on the branch home.}
+    \caption{The tree shape in the remote and local before any operation on the branch home.}
     \label{fig:initial-tree}
 \end{figure}
 
